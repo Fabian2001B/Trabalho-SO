@@ -11,9 +11,9 @@ public class Principal {
             for (int i = 1; i <= numArquivos; i++) {
                 // Caminhos dos arquivos de entrada e saída
                 String nomeArquivoEntrada = String.format(
-                    "C:\\Users\\Natha\\Documents\\Programação\\Vs Code\\Novo_Tp_Sistemas Operacionais\\Arquivos Teste\\TESTE-%02d.txt", i);
+                    "C:\\Users\\fabia\\Downloads\\TESTE-%02d.txt", i);
                 String nomeArquivoSaida = String.format(
-                    "C:\\Users\\Natha\\Documents\\Programação\\Vs Code\\Novo_Tp_Sistemas Operacionais\\Arquivos Teste\\TESTE-%02d-RESULTADO.txt", i);
+                    "C:\\Users\\fabia\\Downloads\\TESTE-%02d-RESULTADO.txt", i);
 
                 // Lendo o arquivo de entrada
                 List<String> linhas = ler_Arquivo(nomeArquivoEntrada);
