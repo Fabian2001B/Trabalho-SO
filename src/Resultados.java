@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.text.DecimalFormat;
 
 public class Resultados {
-    public static void salvarResultados(String caminho_arquivo, double[] resultadosFIFO, double[] resultadosSJF, double[] resultadosSRT) {
+    public static void salvarResultados(String caminho_arquivo, double[] resultadosFIFO, double[] resultadosSJF, double[] resultadosSRT, double[] resultadosRR) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(caminho_arquivo, true))) { // 'true' para anexar no arquivo
             DecimalFormat df = new DecimalFormat("0.000");
 
@@ -31,6 +31,13 @@ public class Resultados {
                 df.format(resultadosSRT[2])
             ));
             writer.newLine(); 
+
+            writer.write(String.format("%s %s %s", 
+            df.format(resultadosRR[0]), 
+            df.format(resultadosRR[1]), 
+            df.format(resultadosRR[2])
+        ));
+        writer.newLine(); 
 
         } catch (IOException e) {
             e.printStackTrace();

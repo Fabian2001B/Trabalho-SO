@@ -11,6 +11,7 @@ public class Principal {
             Escalonamento fifo = new FIFO();  // Algoritmo FIFO
             Escalonamento sjf = new SJF();    // Algoritmo SJF
             Escalonamento srt = new SRT(); 
+            
 
             // Loop para processar os arquivos de teste
             for (int i = 1; i <= numArquivos; i++) {
@@ -22,6 +23,9 @@ public class Principal {
 
                 // Lendo o arquivo de entrada
                 List<String> linhas = ler_Arquivo(nomeArquivoEntrada);
+
+                int quantum = Integer.parseInt(linhas.get(0).trim()); 
+                Escalonamento rr = new RR(quantum);
 
                 // Convertendo os dados lidos para uma lista de processos
                 List<Processo> processos = new ArrayList<>();
@@ -44,9 +48,10 @@ public class Principal {
                 double[] resultadosFIFO = fifo.calcular(processos);
                 double[] resultadosSJF = sjf.calcular(processos);
                 double[] resultadosSRT = srt.calcular(processos);
+                double[] resultadosRR = rr.calcular(processos);
 
                 // Salvando os resultados no mesmo arquivo, em linhas separadas
-                Resultados.salvarResultados(nomeArquivoSaida, resultadosFIFO, resultadosSJF, resultadosSRT);
+                Resultados.salvarResultados(nomeArquivoSaida, resultadosFIFO, resultadosSJF, resultadosSRT, resultadosRR);
 
                 System.out.println("Processado TESTE-" + i + ".txt -> Resultados salvos em " + nomeArquivoSaida);
             }
