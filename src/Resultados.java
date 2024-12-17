@@ -4,15 +4,34 @@ import java.io.IOException;
 import java.text.DecimalFormat;
 
 public class Resultados {
-    public static void salvarResultados(String caminho_arquivo, double[] resultados) {
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(caminho_arquivo))) {
+    public static void salvarResultados(String caminho_arquivo, double[] resultadosFIFO, double[] resultadosSJF, double[] resultadosSRT) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(caminho_arquivo, true))) { // 'true' para anexar no arquivo
             DecimalFormat df = new DecimalFormat("0.000");
-            writer.write(String.format("%s %s %s",
-                df.format(resultados[0]),
-                df.format(resultados[1]),
-                df.format(resultados[2])
+
+            // Salvando resultados do FIFO
+            writer.write(String.format("%s %s %s", 
+                df.format(resultadosFIFO[0]), 
+                df.format(resultadosFIFO[1]), 
+                df.format(resultadosFIFO[2])
             ));
-            writer.newLine();
+            writer.newLine();  // Nova linha após o FIFO
+
+            // Salvando resultados do SJF
+            writer.write(String.format("%s %s %s", 
+                df.format(resultadosSJF[0]), 
+                df.format(resultadosSJF[1]), 
+                df.format(resultadosSJF[2])
+            ));
+            writer.newLine();  // Nova linha após o SJF
+
+
+            writer.write(String.format("%s %s %s", 
+                df.format(resultadosSRT[0]), 
+                df.format(resultadosSRT[1]), 
+                df.format(resultadosSRT[2])
+            ));
+            writer.newLine(); 
+
         } catch (IOException e) {
             e.printStackTrace();
         }

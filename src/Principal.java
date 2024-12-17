@@ -6,10 +6,15 @@ public class Principal {
     public static void main(String[] args) {
         try {
             int numArquivos = 3; // Quantidade de arquivos de teste
-            Escalonamento fifo = new FIFO(); // Instância da classe FIFO
 
+            // Instância das classes de escalonamento
+            Escalonamento fifo = new FIFO();  // Algoritmo FIFO
+            Escalonamento sjf = new SJF();    // Algoritmo SJF
+            Escalonamento srt = new SRT(); 
+
+            // Loop para processar os arquivos de teste
             for (int i = 1; i <= numArquivos; i++) {
-                // Caminhos dos arquivos de entrada e saída
+                // Caminho do arquivo de entrada e saída (mesmo arquivo para ambos os algoritmos)
                 String nomeArquivoEntrada = String.format(
                     "C:\\Users\\fabia\\Downloads\\TESTE-%02d.txt", i);
                 String nomeArquivoSaida = String.format(
@@ -35,9 +40,13 @@ public class Principal {
                     }
                 }
 
-                // Executando o algoritmo FIFO e salvando resultados
+                // Executando o algoritmo FIFO e salvando os resultados
                 double[] resultadosFIFO = fifo.calcular(processos);
-                Resultados.salvarResultados(nomeArquivoSaida, resultadosFIFO);
+                double[] resultadosSJF = sjf.calcular(processos);
+                double[] resultadosSRT = srt.calcular(processos);
+
+                // Salvando os resultados no mesmo arquivo, em linhas separadas
+                Resultados.salvarResultados(nomeArquivoSaida, resultadosFIFO, resultadosSJF, resultadosSRT);
 
                 System.out.println("Processado TESTE-" + i + ".txt -> Resultados salvos em " + nomeArquivoSaida);
             }
